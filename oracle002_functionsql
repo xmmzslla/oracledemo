@@ -519,9 +519,9 @@ ORDER BY department_id;
 --1) 모든사원에게는 상관(Manager)이 있다. 하지만 employees테이블에 유일하게 상관이
 --   없는 로우가 있는데 그 사원(CEO)의 manager_id컬럼값이 NULL이다. 상관이 없는 사원을
 --   출력하되 manager_id컬럼값 NULL 대신 CEO로 출력하시오.
- SELECT manger_id, nvl(to_char(manger_id), 'CEO')
- FROM employees
- ORDER BY manger_id DESC;
+SELECT manager_id, nvl(to_char(manager_id), 'CEO')
+FROM employees
+ ORDER BY manager_id DESC;
 
 --2) 가장최근에 입사한 사원의 입사일과 가장오래된 사원의 입사일을 구하시오.
    SELECT min(hire_date), max(hire_date)
@@ -568,9 +568,9 @@ HAVING job_id = 'IT_PROG';
 --8) employees 테이블에서 아래의 결과처럼 입사인원을 출력하는 SELECT문장을 기술하시오.
 --   <출력:  2001		   2002		       2003
  --  	     1          7                6   >
- SELECT sum(decode(to_char (hire_date, 'yyy'), '2001', 1, 0)) AS "2001",
-             sum(decode(to_char (hire_date, 'yyy'), '2001', 1, 0)) AS "2002",
-             sum(decode(to_char (hire_date, 'yyy'), '2001', 1, 0)) AS "2003"
+ SELECT sum(decode(to_char (hire_date, 'yyyy'), '2001', 1, 0)) AS "2001",
+             sum(decode(to_char (hire_date, 'yyyy'), '2002', 1, 0)) AS "2002",
+             sum(decode(to_char (hire_date, 'yyyy'), '2003', 1, 0)) AS "2003"
  FROM employees;
    
     
@@ -585,7 +585,9 @@ HAVING job_id = 'IT_PROG';
 --instr(데이터, 찾을 문자, 시작위치, 순서)
  SELECT first_name
  FROM employees 
- WHERE  instr(first_name, 'e') = 3;
+ WHERE  instr(first_name, 'e', 1, 1) = 3; 
+ --3번째자리에서부터 1번째의 자리가 e인것
+ -- Neena가 안나온건 2번째 자리에 먼저 e가 있어서
 
  SELECT first_name
  FROM employees 
