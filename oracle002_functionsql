@@ -569,8 +569,8 @@ HAVING job_id = 'IT_PROG';
 --   <출력:  2001		   2002		       2003
  --  	     1          7                6   >
  SELECT sum(decode(to_char (hire_date, 'yyy'), '2001', 1, 0)) AS "2001",
-               sum(decode(to_char (hire_date, 'yyy'), '2001', 1, 0)) AS "2002",
-                sum(decode(to_char (hire_date, 'yyy'), '2001', 1, 0)) AS "2003"
+             sum(decode(to_char (hire_date, 'yyy'), '2001', 1, 0)) AS "2002",
+             sum(decode(to_char (hire_date, 'yyy'), '2001', 1, 0)) AS "2003"
  FROM employees;
    
     
