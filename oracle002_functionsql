@@ -587,7 +587,7 @@ HAVING job_id = 'IT_PROG';
  FROM employees 
  WHERE  instr(first_name, 'e', 1, 1) = 3; 
  --3번째자리에서부터 1번째의 자리가 e인것
- -- Neena가 안나온건 2번째 자리에 먼저 e가 있어서
+ -- Neena가 안나온건 2번째 자리에 먼저 e가 있어서 안나옴
 
  SELECT first_name
  FROM employees 
