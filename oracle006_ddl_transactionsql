@@ -155,7 +155,65 @@ DD(Data Dictionary) : 데이터 사전
 
 commit;
 
+SELECT * FROM emp01;
 
+INSERT INTO emp01
+VALUES('Beta', 7000);
+commit;
 
+SELECT * FROM emp01;
+INSERT INTO emp01
+VALUES('John', 2000);
+
+SAVEPOINT sp;
+
+DELETE FROM emp01
+WHERE first_name = 'Beta';
+
+SELECT * FROM emp01;
+
+ROLLBACK TO sp; /*Beta삭제를 되돌림*/
+
+SELECT * FROM emp01;
+
+DROP TABLE emp02;
+
+SELECT * FROM emp01;
+ROLLBACK;
+SELECT * FROM emp01;
+
+CREATE TABLE emp02(
+emp_id number primary key, /*NOT NULL + UNIQUE*/
+first_name varchar2(50),
+salary number);
+
+ROLLBACK;
+
+SELECT * FROM emp01;
+
+COMMIT;
+
+--A세션
+INSERT INTO emp02
+VALUES(1, 'park', 9000);
+
+SELECT * FROM emp02;
+
+--B세션
+INSERT INTO emp02
+VALUES(1, 'park', 9000);
+/*wating 상태가 됨(Lock 상태 발생)*/
+
+--A세션
+COMMIT; --unique constraint (HR.SYS_C007091) violated
+
+SELECT * FROM emp02;
+
+INSERT INTO emp02
+VALUES(2, 'dong', 8000);
+SELECT * FROM emp02;
+
+ROLLBACK;
+SELECT * FROM emp02;
 
 
