@@ -178,12 +178,14 @@ START WITH manager_id IS NULL
 CONNECT BY PRIOR employee_id = manager_id;
 
 --ORDER SIBLING BY : 레벨 단위로 정렬해줌
-SELECT employee_id, manager_id, LEVEL, lpad(' ', 5*(level -1 )) || first_name,
-CONNECT_BY_ROOT employee_id, CONNECT_BY_ISLEAF, SYS_CONNECT_BY_PATH(first_name, '/')
+--CONNECT_BY_ISCYCLE : 행이 자식노드를 가지고 있는데, 다시 부모노드 인자를 찾아주는 함수로
+--                                        자식노드가 없으면 1, 있으면 0을 리턴한다.
+
+SELECT employee_id, manager_id, LEVEL, lpad(' ', 3*(level -1 )) || first_name,
+CONNECT_BY_ISCYCLE, 
 FROM employees
-START WITH manager_id IS NULL
-CONNECT BY PRIOR employee_id = manager_id
-ORDER SIBLINGS BY first_name;
+START WITH P_LEVEL = 1
+CONNECT BY NOCYCLE PRIOR P_LEVEL = PP_LEVEL;
 
 
 
