@@ -1,0 +1,16 @@
+SELECT*FROM mem
+ORDER BY num DESC;
+
+SELECT d.department_id, d.department_name, e.employee_id, e.first_name, e.job_id
+FROM departments d, employees e
+WHERE d.department_id = e.department_id;
+
+SELECT * FROM mem
+WHERE name LIKE '%길%'
+OR age > 20;
+
+SELECT * FROM mem
+WHERE name LIKE '%길%';
+
+SELECT * FROM mem
+WHERE age > 20;
