@@ -1,0 +1,8 @@
+SELECT * FROM mem
+ORDER BY num DESC;
+
+INSERT INTO mem(num)
+VALUES(100);
+
+ALTER TABLE mem
+ADD CONSTRAINT mem_num_pk PRIMARY KEY(num);
